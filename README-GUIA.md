@@ -166,13 +166,43 @@ sum(rate(node_cpu_seconds_total{mode!="idle"}[1m])) by (instance)
 
 ---
 
-## 🎓 Ejercicios sugeridos para alumnos
+## 🎓 Ejercicios sugeridos para alumnos (con PromQL)
 
-1. Mostrar el uso de CPU por núcleo
-2. Calcular el porcentaje de RAM usada
-3. Ver el número de procesos activos
-4. Mostrar el uptime del sistema
-5. Graficar el tráfico de red por segundo
+### 1. 🧠 Mostrar el uso de CPU por núcleo
+
+```promql
+rate(node_cpu_seconds_total{mode!="idle"}[1m])
+```
+
+### 2. 📊 Calcular el porcentaje de RAM usada
+
+```promql
+(node_memory_MemTotal_bytes - node_memory_MemAvailable_bytes) / node_memory_MemTotal_bytes * 100
+```
+
+### 3. 🧮 Ver el número de procesos activos
+
+```promql
+node_procs_running
+```
+
+### 4. ⏱️ Mostrar el uptime del sistema
+
+```promql
+node_time_seconds - node_boot_time_seconds
+```
+
+### 5. 📡 Graficar el tráfico de red por segundo
+
+#### Bytes recibidos:
+```promql
+rate(node_network_receive_bytes_total[1m])
+```
+
+#### Bytes transmitidos:
+```promql
+rate(node_network_transmit_bytes_total[1m])
+```
 
 ---
 
