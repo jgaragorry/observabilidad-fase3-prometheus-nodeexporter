@@ -1,0 +1,10 @@
+apiVersion: 1
+providers:
+  - name: 'fase3'
+    orgId: 1
+    folder: 'Fase 3'
+    type: file
+    disableDeletion: false
+    editable: true
+    options:
+      path: /var/lib/grafana/dashboards/fase3

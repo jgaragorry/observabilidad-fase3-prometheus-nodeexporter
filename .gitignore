@@ -1,0 +1,15 @@
+# Logs y temporales
+*.log
+/tmp/
+grafana/data/
+prometheus/data/
+
+# Dashboards y provisioning (excepciones explícitas)
+!grafana/dashboards/**/*.json
+!grafana/provisioning/**/*.yml
+
+# IDEs y sistema
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
