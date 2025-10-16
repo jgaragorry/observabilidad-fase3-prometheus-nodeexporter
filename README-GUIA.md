@@ -86,12 +86,6 @@ Después de levantar el entorno con `setup.sh` y **crear o modificar tus dashboa
    ```
 10. Verifica que el dashboard se carga automáticamente en el próximo arranque
 
-### ✅ Resultado esperado
-
-- Los dashboards `.json` estarán versionados en el repo
-- Grafana los cargará automáticamente gracias a `dashboards.yml`
-- El workshop será **100% reproducible y didáctico**
-
 ---
 
 ## 🔧 Archivos explicados
@@ -169,25 +163,21 @@ sum(rate(node_cpu_seconds_total{mode!="idle"}[1m])) by (instance)
 ## 🎓 Ejercicios sugeridos para alumnos (con PromQL)
 
 ### 1. 🧠 Mostrar el uso de CPU por núcleo
-
 ```promql
 rate(node_cpu_seconds_total{mode!="idle"}[1m])
 ```
 
 ### 2. 📊 Calcular el porcentaje de RAM usada
-
 ```promql
 (node_memory_MemTotal_bytes - node_memory_MemAvailable_bytes) / node_memory_MemTotal_bytes * 100
 ```
 
 ### 3. 🧮 Ver el número de procesos activos
-
 ```promql
 node_procs_running
 ```
 
 ### 4. ⏱️ Mostrar el uptime del sistema
-
 ```promql
 node_time_seconds - node_boot_time_seconds
 ```
@@ -240,13 +230,10 @@ rate(node_network_transmit_bytes_total[1m])
 
 ---
 
-## ✅ Validación final
+## 🧩 Resumen de arquitectura y roles
 
-- Todos los archivos están explicados
-- El orden de ejecución está claro
-- La arquitectura está documentada
-- PromQL está enseñado paso a paso
-- El workshop es reproducible y didáctico
-
----
-
+| Componente     | Tipo de dato que maneja | Recolecta | Almacena | Visualiza | Interfaz |
+|----------------|--------------------------|-----------|----------|-----------|----------|
+| Node Exporter  | Métricas del sistema     | ✅ Sí     | ❌ No    | ❌ No     | ❌ No     |
+| Prometheus     | Métricas (de Node Exporter y otros) | ✅ Sí | ✅ Sí | ✅ Parcial (con PromQL) | ✅ Sí |
+| Grafana        | Métricas y logs (via Prometheus o Loki) | ❌ No | ❌ No | ✅ Sí     | ✅
