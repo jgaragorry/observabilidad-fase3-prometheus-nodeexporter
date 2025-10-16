@@ -1,0 +1,70 @@
+{
+  "uid": "sistema-basico",
+  "title": "Sistema Básico",
+  "timezone": "browser",
+  "panels": [
+    {
+      "type": "graph",
+      "title": "Uso de CPU por núcleo",
+      "targets": [
+        {
+          "expr": "rate(node_cpu_seconds_total{mode!=\"idle\"}[1m])",
+          "legendFormat": "{{cpu}}"
+        }
+      ],
+      "gridPos": { "x": 0, "y": 0, "w": 12, "h": 8 }
+    },
+    {
+      "type": "gauge",
+      "title": "RAM disponible",
+      "targets": [
+        { "expr": "node_memory_MemAvailable_bytes" }
+      ],
+      "gridPos": { "x": 12, "y": 0, "w": 6, "h": 8 }
+    },
+    {
+      "type": "gauge",
+      "title": "RAM total",
+      "targets": [
+        { "expr": "node_memory_MemTotal_bytes" }
+      ],
+      "gridPos": { "x": 18, "y": 0, "w": 6, "h": 8 }
+    },
+    {
+      "type": "graph",
+      "title": "Disco libre por partición",
+      "targets": [
+        {
+          "expr": "node_filesystem_avail_bytes",
+          "legendFormat": "{{mountpoint}}"
+        }
+      ],
+      "gridPos": { "x": 0, "y": 8, "w": 12, "h": 8 }
+    },
+    {
+      "type": "graph",
+      "title": "Red - Bytes recibidos",
+      "targets": [
+        {
+          "expr": "rate(node_network_receive_bytes_total[1m])",
+          "legendFormat": "{{device}}"
+        }
+      ],
+      "gridPos": { "x": 12, "y": 8, "w": 6, "h": 8 }
+    },
+    {
+      "type": "graph",
+      "title": "Red - Bytes transmitidos",
+      "targets": [
+        {
+          "expr": "rate(node_network_transmit_bytes_total[1m])",
+          "legendFormat": "{{device}}"
+        }
+      ],
+      "gridPos": { "x": 18, "y": 8, "w": 6, "h": 8 }
+    }
+  ],
+  "schemaVersion": 36,
+  "version": 1
+}
+

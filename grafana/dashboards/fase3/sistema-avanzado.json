@@ -1,0 +1,62 @@
+{
+  "uid": "sistema-avanzado",
+  "title": "Sistema Avanzado",
+  "timezone": "browser",
+  "panels": [
+    {
+      "type": "gauge",
+      "title": "Swap usada",
+      "targets": [
+        {
+          "expr": "node_memory_SwapTotal_bytes - node_memory_SwapFree_bytes"
+        }
+      ],
+      "gridPos": { "x": 0, "y": 0, "w": 6, "h": 8 }
+    },
+    {
+      "type": "graph",
+      "title": "Load average",
+      "targets": [
+        { "expr": "node_load1" },
+        { "expr": "node_load5" },
+        { "expr": "node_load15" }
+      ],
+      "gridPos": { "x": 6, "y": 0, "w": 12, "h": 8 }
+    },
+    {
+      "type": "stat",
+      "title": "Procesos activos",
+      "targets": [
+        { "expr": "node_procs_running" }
+      ],
+      "gridPos": { "x": 18, "y": 0, "w": 6, "h": 8 }
+    },
+    {
+      "type": "graph",
+      "title": "Conexiones TCP activas",
+      "targets": [
+        { "expr": "node_netstat_Tcp_CurrEstab" }
+      ],
+      "gridPos": { "x": 0, "y": 8, "w": 12, "h": 8 }
+    },
+    {
+      "type": "gauge",
+      "title": "Entropía disponible",
+      "targets": [
+        { "expr": "node_entropy_available_bits" }
+      ],
+      "gridPos": { "x": 12, "y": 8, "w": 6, "h": 8 }
+    },
+    {
+      "type": "stat",
+      "title": "Uptime del sistema",
+      "targets": [
+        { "expr": "node_time_seconds - node_boot_time_seconds" }
+      ],
+      "gridPos": { "x": 18, "y": 8, "w": 6, "h": 8 }
+    }
+  ],
+  "schemaVersion": 36,
+  "version": 1
+}
+
