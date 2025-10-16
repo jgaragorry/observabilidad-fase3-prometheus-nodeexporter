@@ -53,6 +53,47 @@ Esta guía explica paso a paso cómo ejecutar el workshop **Fase 3: Prometheus +
 
 ---
 
+## 📤 Paso adicional: Exportar manualmente los dashboards desde Grafana
+
+> Este paso es necesario para capturar los dashboards que diseñaste manualmente en Grafana y convertirlos en archivos `.json` que luego serán aprovisionados automáticamente en futuras ejecuciones del workshop.
+
+### 🧠 ¿Por qué se hace?
+
+- Porque Grafana **no exporta dashboards automáticamente**.
+- Porque necesitas guardar los dashboards como archivos `.json` para que se carguen en el arranque vía `dashboards.yml`.
+- Porque esto permite que tus alumnos y seguidores **reproduzcan el entorno sin tener que construir los dashboards manualmente**.
+
+### 🧩 ¿Cuándo se hace?
+
+Después de levantar el entorno con `setup.sh` y **crear o modificar tus dashboards en Grafana**, antes de cerrar el entorno o compartir el repo.
+
+### 🛠️ ¿Cómo se hace? (paso a paso)
+
+1. Accede a Grafana: `http://localhost:3000`
+2. Inicia sesión: usuario `admin`, contraseña `admin`
+3. Abre el dashboard que quieres exportar
+4. Haz clic en el ícono de engranaje (⚙️) → **Settings**
+5. En el menú lateral, selecciona **JSON Model**
+6. Copia todo el contenido del JSON
+7. En tu editor local, crea un archivo:
+   - `grafana/dashboards/fase3/sistema-basico.json`  
+     o  
+   - `grafana/dashboards/fase3/sistema-avanzado.json`
+8. Pega el contenido copiado y guarda el archivo
+9. Confirma que el archivo `.json` esté bien formateado:
+   ```bash
+   jq empty grafana/dashboards/fase3/sistema-basico.json
+   ```
+10. Verifica que el dashboard se carga automáticamente en el próximo arranque
+
+### ✅ Resultado esperado
+
+- Los dashboards `.json` estarán versionados en el repo
+- Grafana los cargará automáticamente gracias a `dashboards.yml`
+- El workshop será **100% reproducible y didáctico**
+
+---
+
 ## 🔧 Archivos explicados
 
 ### `docker-compose.yml`
